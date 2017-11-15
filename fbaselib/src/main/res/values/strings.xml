@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">FBaselib</string>
+    <string name="tips_net_error">网络异常，请检查网络</string>
+    <string name="tips_form_json_error">返回数据格式错误</string>
+    <string name="tips_timeout">登录超时，请重新登录</string>
+
+    <string name="folder_all">所有照片</string>
+    <string name="msg_no_camera">没有系统相机</string>
+    <string name="msg_amount_limit">已经达到最高选择数量</string>
+    <string name="action_done">完成</string>
+    <string name="action_save">保存</string>
+    <string name="photo_unit">张</string>
+    <string name="tip_take_photo">拍摄照片</string>
+    <string name="preview">预览</string>
+</resources>

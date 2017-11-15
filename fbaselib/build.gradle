@@ -1,0 +1,96 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+bintray {
+    user = "zhoukang1989" //这里注意原Demo不是这么写的，还有上面两行也别忘了
+    key = "0c2f9971024b4cc66c89bf7e0b27ec206e8a87f0"
+    //目测有三种方式打包上传到bintray，我们要用Maven Publications模式。
+    // Configurations 模式貌似只能在java plugin下使用，反正尝试gradlew bintrayUpload之后，网站上是看不到的。
+    //安卓上要用的话例子在{@link https://github.com/bintray/bintray-examples/tree/master/gradle-bintray-plugin-examples/android-maven-example}里。
+    configurations = ['archives']
+    pkg {
+        repo = "maven" //在bintray中的已经存在的仓库，貌似有好多现成的比如'maven' 'nuget' 'boxes' 'registry' 'generic' 'rpm' 'opkg' 等等等等……还可以自己创建
+        name = 'fbaselib' //项目名字
+        licenses = ['Apache-2.0'] //开源许可
+        vcsUrl = 'https://github.com/yzlee/YourLibrary.git' //如果这个项目不存在的话，是要强制填写的。
+        //version {
+        //    name = '1.0' //这个是版本号，建议不要写，而是定义一个全局的版本号
+        //}
+        publish = true //一定要填写，这个不填写bintrayUpload默认是不发布的！！！！！！！！
+    }
+}
+group = 'cn.baselib' //这个就是引入依赖时候的前缀了。
+version = '1.0' //这就是版本，bintray{}中的版本还是不要写了，默认用这个
+allprojects {
+    repositories {
+        mavenLocal()
+        jcenter()
+        google()
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.wang.avi:library:2.1.3'
+    compile 'com.umeng.analytics:analytics:6.1.2'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:cardview-v7:26.1.0'
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile 'com.zhy:okhttputils:2.6.2'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.squareup.okio:okio:1.12.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.github.bumptech.glide:glide:4.2.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.2.0'
+    compile 'com.google.code.gson:gson:2.8.0'
+    testCompile 'junit:junit:4.12'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.malinskiy:superrecyclerview:1.1.4'
+    compile 'com.google.android:flexbox:0.3.0-alpha3'
+
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
+
+    compile 'com.google.zxing:core:3.3.0'
+    compile 'cn.bingoogolapple:bga-qrcodecore:1.1.8@aar'
+    compile 'cn.bingoogolapple:bga-zxing:1.1.8@aar'
+}

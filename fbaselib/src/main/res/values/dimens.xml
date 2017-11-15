@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="calendar_day_headers_paddingbottom">4dp</dimen>
+    <dimen name="calendar_month_topmargin">16dp</dimen>
+    <dimen name="calendar_month_title_bottommargin">4dp</dimen>
+    <dimen name="calendar_text_medium">10sp</dimen>
+    <dimen name="calendar_text_small">14sp</dimen>
+    <dimen name="calendar_text_big">16sp</dimen>
+    <dimen name="page_margin_width">12dp</dimen>
+
+    <!-- For list texts (top line)Viewpager用 -->
+    <dimen name="common_text_size_middle">14dp</dimen>
+    <dimen name="common_text_size_middle_2">16dp</dimen>
+    <dimen name="image_size">120dp</dimen>
+    <dimen name="space_size">2dp</dimen>
+    <dimen name="folder_cover_size">72dp</dimen>
+    <!--Map-->
+    <dimen name="nomal_corners">5dp</dimen>
+    <dimen name="text_nomal">15sp</dimen>
+    <dimen name="text_small">14sp</dimen>
+    <dimen name="text_top_title">19sp</dimen>
+</resources>
