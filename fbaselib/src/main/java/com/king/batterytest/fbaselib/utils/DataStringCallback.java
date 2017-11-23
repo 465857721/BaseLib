@@ -102,18 +102,15 @@ public class DataStringCallback extends StringCallback {
 
         ErrorBean errorBean = getGsonInstance().fromJson(s, ErrorBean.class);
 
-        // 接口有错
         if (errorBean.getError() != 0) {
             if (showErrorToast) {
                 iview.onError(errorBean.getMsg());
             }
             iview.onNoPermission();
         }
-        // 没权限
         if (errorBean.getError() == 405) {
             iview.onNoPermission();
         }
-        // 接口返回正确
         if (isJudge && errorBean.getError() == 403) {
             iview.onTimeOut();
         }

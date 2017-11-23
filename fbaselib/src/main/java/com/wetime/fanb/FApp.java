@@ -1,4 +1,4 @@
-package com.king.batterytest.fbaselib.main;
+package com.wetime.fanb;
 
 import android.app.Activity;
 import android.app.Application;
@@ -33,7 +33,7 @@ import static android.os.Process.killProcess;
  */
 
 public class FApp extends Application {
-    private List<Activity> oList;//用于存放所有启动的Activity的集合
+    private List<Activity> oList;
     private SharePreferenceUtil spu;
     private static FApp instance;
 
@@ -42,21 +42,21 @@ public class FApp extends Application {
         super.onCreate();
         ArrayList<String> keys = new ArrayList<>();
 
-        if (isApkInDebug(this)) {
-            keys.add("41:C2:55:46:96:1E:86:A8:FC:21:77:2C:77:37:6C:C9:30:41:C9:FA");//test
-        }
+//        if (idd(this)) {
+//            keys.add("41:C2:55:46:96:1E:86:A8:FC:21:77:2C:77:37:6C:C9:30:41:C9:FA");//test
+//        }
 
-        boolean checked = false;
-        for (String s : keys) {
-            SignCheck signCheck = new SignCheck(this, s);
-            if (signCheck.check()) {
-                checked = true;
-            }
-        }
-        if (!checked) {
-            System.exit(0);
-            killProcess(android.os.Process.myPid());
-        }
+//        boolean checked = false;
+//        for (String s : keys) {
+//            SignCheck signCheck = new SignCheck(this, s);
+//            if (signCheck.check()) {
+//                checked = true;
+//            }
+//        }
+//        if (!checked) {
+//            System.exit(0);
+//            killProcess(android.os.Process.myPid());
+//        }
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new MLoggerInterceptor("http", true))
@@ -96,7 +96,6 @@ public class FApp extends Application {
     }
 
 
-
     public void addActivity(Activity activity) {
 
         if (!oList.contains(activity)) {
@@ -104,7 +103,7 @@ public class FApp extends Application {
         }
     }
 
-    public static boolean isApkInDebug(Context context) {
+    public static boolean idd(Context context) {
         try {
             ApplicationInfo info = context.getApplicationInfo();
             return (info.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
@@ -117,8 +116,8 @@ public class FApp extends Application {
     public void removeActivity(Activity activity) {
 
         if (oList.contains(activity)) {
-            oList.remove(activity);//从集合中移除
-            activity.finish();//销毁当前Activity
+            oList.remove(activity);
+            activity.finish();
         }
     }
 

@@ -1,9 +1,7 @@
 package com.king.batterytest.fbaselib.utils;
 
 import android.content.Context;
-import android.content.Intent;
 
-import com.king.batterytest.fbaselib.main.FApp;
 import com.king.batterytest.fbaselib.main.model.BaseBean;
 import com.king.batterytest.fbaselib.main.model.ErrorBean;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -64,7 +62,7 @@ public class MStringCallback extends StringCallback {
         if (showDialog) {
             Tools.hideWaitDialog();
         }
-        if (showErrorToast) {
+//        if (showErrorToast) {
 //            if (Tools.checkNetwork(mContext)) {
 //                Tools.toastInBottom(mContext, e.toString());
 //            } else {
@@ -72,7 +70,7 @@ public class MStringCallback extends StringCallback {
 //            }
 
 
-        }
+//        }
 
     }
 

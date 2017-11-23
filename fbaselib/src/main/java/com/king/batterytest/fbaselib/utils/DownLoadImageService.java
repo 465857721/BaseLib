@@ -53,7 +53,7 @@ public class DownLoadImageService implements Runnable {
                     .into(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                     .get();
             if (bitmap != null) {
-                // 在这里执行图片保存方法
+
                 saveImageToGallery(context, bitmap);
             }
         } catch (Exception e) {
@@ -73,7 +73,7 @@ public class DownLoadImageService implements Runnable {
     }
 
     public void saveImageToGallery(Context context, Bitmap bmp) {
-        // 首先保存图片
+
         File file = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsoluteFile();//注意小米手机必须这样获得public绝对路径
         String fileName = "wetime";
         File appDir = new File(file, fileName);

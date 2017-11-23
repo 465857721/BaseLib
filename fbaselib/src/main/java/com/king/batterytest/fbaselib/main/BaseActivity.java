@@ -1,7 +1,6 @@
 package com.king.batterytest.fbaselib.main;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -17,6 +16,7 @@ import com.king.batterytest.fbaselib.utils.LogUtils;
 import com.king.batterytest.fbaselib.utils.SharePreferenceUtil;
 import com.king.batterytest.fbaselib.utils.Tools;
 import com.umeng.analytics.MobclickAgent;
+import com.wetime.fanb.FApp;
 
 import org.greenrobot.eventbus.EventBus;
 
